@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
    
-    - run: sudo apt-get update && sudo apt-get install libboost-beast-dev -y
+    - run: sudo apt-get update && sudo apt-get install libboost-system-dev -y
     - run: cmake .
     - run: cmake --build .
     - run: cmake --build . --target package
