@@ -1,0 +1,58 @@
+﻿# CMakeList.txt: проект CMake для messenger_server; включите исходный код и определения,
+# укажите здесь логику для конкретного проекта.
+#
+cmake_minimum_required (VERSION 3.8)
+
+set(TARGET "messenger_server")
+
+if(DEFINED ENV{GITHUB_RUN_NUMBER})
+    project (${TARGET} VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
+else ()
+    project (${TARGET})
+endif()
+
+if (UNIX)
+    find_package (Threads)
+endif()
+
+find_package(Boost COMPONENTS system  REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+
+# Добавьте источник в исполняемый файл этого проекта.
+add_executable (${TARGET} "main.cpp" "listener.cpp" "shared_state.cpp" "websocket_session" "commands_processor.cpp")
+
+target_link_libraries(${TARGET}
+        ${Boost_LIBRARIES}
+        ${CMAKE_THREAD_LIBS_INIT}
+        ) 
+
+if (UNIX)
+    target_link_libraries (${TARGET} Threads::Threads)
+endif()
+
+if (MSVC)
+    target_compile_options(${TARGET} PUBLIC
+        /W4
+    )
+else ()
+
+    target_compile_options(${TARGET} PUBLIC
+        -Wall -Wextra -pedantic -Werror
+    )
+endif()
+
+set_target_properties(${TARGET} PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+)
+
+# TODO: Добавьте тесты и целевые объекты, если это необходимо.
+install(TARGETS ${TARGET} RUNTIME DESTINATION bin)
+
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+set(CPACK_PACKAGE_CONTACT example@example.com)
+
+include(CPack)
