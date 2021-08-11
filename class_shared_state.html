@@ -83,8 +83,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1b19c5fc931e4f3e0d77791be1738608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2832699be2b40520a98dd29ec7ed62b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shared_state.html#ac2832699be2b40520a98dd29ec7ed62b">SendTo</a> (<a class="el" href="class_websocket_session.html">WebsocketSession</a> *current_session, std::string user_name, std::string message)</td></tr>
 <tr class="separator:ac2832699be2b40520a98dd29ec7ed62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7c3840d8592effbeb55a1b63d70eb79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shared_state.html#ad7c3840d8592effbeb55a1b63d70eb79">SetUserName</a> (<a class="el" href="class_websocket_session.html">WebsocketSession</a> *session, std::string user_name)</td></tr>
-<tr class="separator:ad7c3840d8592effbeb55a1b63d70eb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add6e853d577274c74f076a19bb6ef406"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shared_state.html#add6e853d577274c74f076a19bb6ef406">SendToGroup</a> (<a class="el" href="class_websocket_session.html">WebsocketSession</a> *current_session, std::string group_name, std::string message)</td></tr>
+<tr class="separator:add6e853d577274c74f076a19bb6ef406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f9b49a3a3ac118a8209b777321e7427"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shared_state.html#a5f9b49a3a3ac118a8209b777321e7427">AddUser</a> (<a class="el" href="class_websocket_session.html">WebsocketSession</a> *session, std::string user_name)</td></tr>
+<tr class="separator:a5f9b49a3a3ac118a8209b777321e7427"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5bba956826f95cad60a04f36a62d5a95"></a>
@@ -113,6 +115,34 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5f9b49a3a3ac118a8209b777321e7427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f9b49a3a3ac118a8209b777321e7427">&#9670;&nbsp;</a></span>AddUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SharedState::AddUser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_websocket_session.html">WebsocketSession</a> *&#160;</td>
+          <td class="paramname"><em>session</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>user_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae67bc7b024e48fdcf67dfb1cb8fc7ff8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae67bc7b024e48fdcf67dfb1cb8fc7ff8">&#9670;&nbsp;</a></span>Join()</h2>
 
@@ -211,23 +241,29 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad7c3840d8592effbeb55a1b63d70eb79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7c3840d8592effbeb55a1b63d70eb79">&#9670;&nbsp;</a></span>SetUserName()</h2>
+<a id="add6e853d577274c74f076a19bb6ef406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add6e853d577274c74f076a19bb6ef406">&#9670;&nbsp;</a></span>SendToGroup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SharedState::SetUserName </td>
+          <td class="memname">void SharedState::SendToGroup </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_websocket_session.html">WebsocketSession</a> *&#160;</td>
-          <td class="paramname"><em>session</em>, </td>
+          <td class="paramname"><em>current_session</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>user_name</em>&#160;</td>
+          <td class="paramname"><em>group_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

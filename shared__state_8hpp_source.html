@@ -86,27 +86,29 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_shared_state.html#a9da0c0ba61dfedee363aab9576fda68f">Leave</a>(<a class="code" href="class_websocket_session.html">WebsocketSession</a>&amp; session);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_shared_state.html#a1b19c5fc931e4f3e0d77791be1738608">SendAll</a>(<a class="code" href="class_websocket_session.html">WebsocketSession</a>* current_session, std::string message);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_shared_state.html#ac2832699be2b40520a98dd29ec7ed62b">SendTo</a>(<a class="code" href="class_websocket_session.html">WebsocketSession</a>* current_session, std::string user_name, std::string message);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_shared_state.html#ad7c3840d8592effbeb55a1b63d70eb79">SetUserName</a>(<a class="code" href="class_websocket_session.html">WebsocketSession</a>* session, std::string user_name);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_websocket_session.html">WebsocketSession</a>* GetSessionByName(<span class="keyword">const</span> std::string&amp; user_name);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// This simple method of tracking</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// sessions only works with an implicit</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// strand (i.e. a single-threaded server)</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">//std::unordered_set&lt;websocket_session*&gt; sessions_;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::unordered_map&lt;WebsocketSession*, std::string&gt; sessions_;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* noname_ = <span class="stringliteral">&quot;noname&quot;</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_shared_state.html#add6e853d577274c74f076a19bb6ef406">SendToGroup</a>(<a class="code" href="class_websocket_session.html">WebsocketSession</a>* current_session, std::string group_name, std::string message);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_shared_state.html#a5f9b49a3a3ac118a8209b777321e7427">AddUser</a>(<a class="code" href="class_websocket_session.html">WebsocketSession</a>* session, std::string user_name);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_websocket_session.html">WebsocketSession</a>* GetSessionByName(<span class="keyword">const</span> std::string&amp; user_name);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// This simple method of tracking</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// sessions only works with an implicit</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// strand (i.e. a single-threaded server)</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">//std::unordered_set&lt;websocket_session*&gt; sessions_;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::unordered_map&lt;WebsocketSession*, std::string&gt; sessions_;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* noname_ = <span class="stringliteral">&quot;noname&quot;</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
 <div class="ttc" id="aclass_shared_state_html"><div class="ttname"><a href="class_shared_state.html">SharedState</a></div><div class="ttdef"><b>Definition:</b> shared_state.hpp:12</div></div>
 <div class="ttc" id="aclass_shared_state_html_a1b19c5fc931e4f3e0d77791be1738608"><div class="ttname"><a href="class_shared_state.html#a1b19c5fc931e4f3e0d77791be1738608">SharedState::SendAll</a></div><div class="ttdeci">void SendAll(WebsocketSession *current_session, std::string message)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:16</div></div>
 <div class="ttc" id="aclass_shared_state_html_a5bba956826f95cad60a04f36a62d5a95"><div class="ttname"><a href="class_shared_state.html#a5bba956826f95cad60a04f36a62d5a95">SharedState::SharedState</a></div><div class="ttdeci">SharedState()=default</div></div>
+<div class="ttc" id="aclass_shared_state_html_a5f9b49a3a3ac118a8209b777321e7427"><div class="ttname"><a href="class_shared_state.html#a5f9b49a3a3ac118a8209b777321e7427">SharedState::AddUser</a></div><div class="ttdeci">void AddUser(WebsocketSession *session, std::string user_name)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:50</div></div>
 <div class="ttc" id="aclass_shared_state_html_a9da0c0ba61dfedee363aab9576fda68f"><div class="ttname"><a href="class_shared_state.html#a9da0c0ba61dfedee363aab9576fda68f">SharedState::Leave</a></div><div class="ttdeci">void Leave(WebsocketSession &amp;session)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:11</div></div>
 <div class="ttc" id="aclass_shared_state_html_ac2832699be2b40520a98dd29ec7ed62b"><div class="ttname"><a href="class_shared_state.html#ac2832699be2b40520a98dd29ec7ed62b">SharedState::SendTo</a></div><div class="ttdeci">void SendTo(WebsocketSession *current_session, std::string user_name, std::string message)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:29</div></div>
-<div class="ttc" id="aclass_shared_state_html_ad7c3840d8592effbeb55a1b63d70eb79"><div class="ttname"><a href="class_shared_state.html#ad7c3840d8592effbeb55a1b63d70eb79">SharedState::SetUserName</a></div><div class="ttdeci">void SetUserName(WebsocketSession *session, std::string user_name)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:45</div></div>
+<div class="ttc" id="aclass_shared_state_html_add6e853d577274c74f076a19bb6ef406"><div class="ttname"><a href="class_shared_state.html#add6e853d577274c74f076a19bb6ef406">SharedState::SendToGroup</a></div><div class="ttdeci">void SendToGroup(WebsocketSession *current_session, std::string group_name, std::string message)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:45</div></div>
 <div class="ttc" id="aclass_shared_state_html_ae67bc7b024e48fdcf67dfb1cb8fc7ff8"><div class="ttname"><a href="class_shared_state.html#ae67bc7b024e48fdcf67dfb1cb8fc7ff8">SharedState::Join</a></div><div class="ttdeci">void Join(WebsocketSession &amp;session)</div><div class="ttdef"><b>Definition:</b> shared_state.cpp:6</div></div>
 <div class="ttc" id="aclass_websocket_session_html"><div class="ttname"><a href="class_websocket_session.html">WebsocketSession</a></div><div class="ttdef"><b>Definition:</b> websocket_session.hpp:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
