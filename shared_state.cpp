@@ -42,7 +42,12 @@ void SharedState::SendTo(WebsocketSession* current_session, std::string user_nam
     return;
 }
 
-void SharedState::SetUserName(WebsocketSession* session, std::string user_name)
+void SharedState::SendToGroup(WebsocketSession* /*current_session*/, std::string /*group_name*/, std::string /*message*/)
+{
+
+}
+
+void SharedState::AddUser(WebsocketSession* session, std::string user_name)
 {
     if (GetSessionByName(user_name) == nullptr)
     {

@@ -19,8 +19,9 @@ public:
     void Leave(WebsocketSession& session);
     void SendAll(WebsocketSession* current_session, std::string message);
     void SendTo(WebsocketSession* current_session, std::string user_name, std::string message);
+    void SendToGroup(WebsocketSession* current_session, std::string group_name, std::string message);
 
-    void SetUserName(WebsocketSession* session, std::string user_name);
+    void AddUser(WebsocketSession* session, std::string user_name);
 
 private:
 

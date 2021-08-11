@@ -22,7 +22,7 @@ void CommandsProcessor::ProcessCommand(std::string cmd, WebsocketSession* sessio
 
 		iss >> user_name;
 
-		state_->SetUserName(session, user_name );
+		state_->AddUser(session, user_name );
 	}
 	else if (cmd_name == "#to")
 	{
@@ -33,6 +33,25 @@ void CommandsProcessor::ProcessCommand(std::string cmd, WebsocketSession* sessio
 		std::getline(iss, msg);
 
 		state_->SendTo(session, user_name, msg);
+	}
+	else if(cmd_name == "#to_group")
+	{
+		std::string group_name, msg;
+
+		iss >> group_name;
+
+		std::getline(iss, msg);
+
+		state_->SendToGroup(session, group_name, msg);
+		
+	}
+	else if(cmd_name == "#create_group")
+	{
+		std::string group_name;
+
+		iss >> group_name;
+
+		state_->AddUser(session, group_name );
 	}
 	else
 	{
