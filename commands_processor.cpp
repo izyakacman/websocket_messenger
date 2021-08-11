@@ -51,7 +51,7 @@ void CommandsProcessor::ProcessCommand(std::string cmd, WebsocketSession* sessio
 
 		iss >> group_name;
 
-		state_->AddUser(session, group_name );
+		state_->AddGroup(session, group_name );
 	}
 	else
 	{

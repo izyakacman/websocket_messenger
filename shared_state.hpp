@@ -22,6 +22,7 @@ public:
     void SendToGroup(WebsocketSession* current_session, std::string group_name, std::string message);
 
     void AddUser(WebsocketSession* session, std::string user_name);
+    void AddGroup(WebsocketSession* session, std::string group_name);
 
 private:
 

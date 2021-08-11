@@ -67,6 +67,11 @@ void SharedState::AddUser(WebsocketSession* session, std::string user_name)
     return;
 }
 
+void SharedState::AddGroup(WebsocketSession* /*session*/, std::string /*group_name*/)
+{
+
+}
+
 WebsocketSession* SharedState::GetSessionByName(const std::string& user_name)
 {
     auto itr = std::find_if(sessions_.cbegin(), sessions_.cend(), [&user_name](auto pair) {return pair.second == user_name;});
