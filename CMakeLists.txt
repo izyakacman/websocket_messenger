@@ -19,7 +19,7 @@ find_package(Boost COMPONENTS system  REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (${TARGET} "main.cpp" "listener.cpp" "shared_state.cpp" "websocket_session" "commands_processor.cpp")
+add_executable (${TARGET} "main.cpp" "listener.cpp" "shared_state.cpp" "websocket_session.cpp" "commands_processor.cpp")
 
 target_link_libraries(${TARGET}
         ${Boost_LIBRARIES}

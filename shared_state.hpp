@@ -4,6 +4,8 @@
 #include <string>
 #include <unordered_map>
 
+#include <boost/property_tree/ptree.hpp>
+
 // Forward declaration
 class WebsocketSession;
 
@@ -20,9 +22,11 @@ public:
     void SendAll(WebsocketSession* current_session, std::string message);
     void SendTo(WebsocketSession* current_session, std::string user_name, std::string message);
     void SendToGroup(WebsocketSession* current_session, std::string group_name, std::string message);
+    void SendMsg(WebsocketSession* session, std::string msg);
 
-    void AddUser(WebsocketSession* session, std::string user_name);
-    void AddGroup(WebsocketSession* session, std::string group_name);
+    void AddUser(WebsocketSession* current_session, std::string user_name);
+    void AddGroup(WebsocketSession* current_session, std::string group_name);
+    void AddUserToGroup(WebsocketSession* current_session, std::string group_name, std::string user_name);
 
 private:
 
@@ -35,4 +39,7 @@ private:
     std::unordered_map<WebsocketSession*, std::string> sessions_;
 
     const char* noname_ = "noname";
+    const char* json_file_name_ = "server.json";
+    const char* json_user_name_ = ".user";
+    boost::property_tree::ptree groups_;
 };

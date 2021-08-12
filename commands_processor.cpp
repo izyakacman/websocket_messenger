@@ -53,6 +53,14 @@ void CommandsProcessor::ProcessCommand(std::string cmd, WebsocketSession* sessio
 
 		state_->AddGroup(session, group_name );
 	}
+	else if(cmd_name == "#add_user_to_group") // #add_user_to_group <group> <user>
+	{
+		std::string group_name;
+		std::string user_name;
+		iss >> group_name >> user_name;
+
+		state_->AddUserToGroup(session, group_name, user_name );
+	}
 	else
 	{
 		state_->SendAll(session, cmd);
