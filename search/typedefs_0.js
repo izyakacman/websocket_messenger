@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_5fcode_114',['error_code',['../net_8hpp.html#abcde13a646ed975ad5cdbe88245ffb7a',1,'net.hpp']]]
+  ['error_5fcode_118',['error_code',['../net_8hpp.html#abcde13a646ed975ad5cdbe88245ffb7a',1,'net.hpp']]]
 ];
