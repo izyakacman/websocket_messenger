@@ -5,6 +5,8 @@
 
 #include <boost/property_tree/json_parser.hpp>
 
+using boost::property_tree::ptree;
+
 void SharedState::Join(WebsocketSession& session)
 {
     sessions_[&session] = noname_;
@@ -96,7 +98,7 @@ void SharedState::AddGroup(WebsocketSession* current_session, std::string group_
         */
 
        //
-       using boost::property_tree::ptree;
+       
         groups_.put_child( group_name, ptree() );
         auto& array = groups_.get_child( group_name );
         array.push_back( std::make_pair( "", ptree("foo") ) );
@@ -118,11 +120,11 @@ void SharedState::AddUserToGroup(WebsocketSession* current_session, std::string 
 {
     try
     {
-        std::cout << "1111\n";
-        auto group_node = groups_.get_child(group_name);
+        std::cout << "group_name " << group_name << std::endl;
+        auto& group_node = groups_.get_child(group_name);
         //
-        for(auto& user : group_node)
-            std::cout << user.second.data() << std::endl;
+        // for(auto& user : group_node)
+        //     std::cout << user.second.data() << std::endl;
         //
         // boost::property_tree::ptree user_node;
         // user_node.put("", user_name);
@@ -130,9 +132,9 @@ void SharedState::AddUserToGroup(WebsocketSession* current_session, std::string 
         //groups_.add_child(group_name, group_node);
 
         //
-        std::cout << "____________________\n";
-        for(auto& user : group_node)
-            std::cout << user.second.data() << std::endl;
+        // std::cout << "____________________\n";
+        // for(auto& user : group_node)
+        //     std::cout << user.second.data() << std::endl;
         //
 
 
