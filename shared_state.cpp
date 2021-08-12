@@ -124,9 +124,9 @@ void SharedState::AddUserToGroup(WebsocketSession* current_session, std::string 
         for(auto& user : group_node)
             std::cout << user.second.data() << std::endl;
         //
-        boost::property_tree::ptree user_node;
-        user_node.put("", user_name);
-        group_node.push_back(std::make_pair("", user_node));
+        // boost::property_tree::ptree user_node;
+        // user_node.put("", user_name);
+        group_node.push_back(std::make_pair("", boost::property_tree::ptree(user_name)));
         //groups_.add_child(group_name, group_node);
 
         //
