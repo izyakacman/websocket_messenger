@@ -1,7 +1,5 @@
+#include "precompiled.hpp"
 #include "commands_processor.hpp"
-
-#include <iostream>
-#include <sstream>
 
 CommandsProcessor::CommandsProcessor(std::shared_ptr<SharedState> state) :
 	state_{state}
@@ -60,6 +58,25 @@ void CommandsProcessor::ProcessCommand(std::string cmd, WebsocketSession* sessio
 		iss >> group_name >> user_name;
 
 		state_->AddUserToGroup(session, group_name, user_name );
+	}
+	else if(cmd_name == "#get_groups_list")
+	{
+		state_->GetGroupsList(session);
+	}
+	else if(cmd_name == "#get_group_users") // #get_group_users <group>
+	{
+		std::string group_name;
+		iss >> group_name;
+
+		state_->GetGroupUsers(session, group_name);
+	}
+	else if(cmd_name == "#del_user_from_group") // #del_user_from_group <group> <user>
+	{
+		std::string group_name;
+		std::string user_name;
+		iss >> group_name >> user_name;
+
+		state_->DelUserFromGroup(session, group_name, user_name );
 	}
 	else
 	{

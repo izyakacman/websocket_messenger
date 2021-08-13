@@ -1,7 +1,6 @@
+#include "precompiled.hpp"
 #include "listener.hpp"
 #include "websocket_session.hpp"
-
-#include <iostream>
 
 Listener::Listener( net::io_context& ioc, tcp::endpoint endpoint,  std::shared_ptr<SharedState> const& state)
     : acceptor_{ ioc }

@@ -21,6 +21,8 @@ include_directories(${Boost_INCLUDE_DIR})
 # Добавьте источник в исполняемый файл этого проекта.
 add_executable (${TARGET} "main.cpp" "listener.cpp" "shared_state.cpp" "websocket_session.cpp" "commands_processor.cpp")
 
+target_precompile_headers(${TARGET} PRIVATE precompiled.hpp)
+
 target_link_libraries(${TARGET}
         ${Boost_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}

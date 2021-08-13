@@ -1,10 +1,9 @@
 ﻿// main.cpp: определяет точку входа для приложения.
 //
 
+#include "precompiled.hpp"
 #include "listener.hpp"
 #include "shared_state.hpp"
-
-#include <boost/asio/signal_set.hpp>
 
 using namespace std;
 
