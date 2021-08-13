@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7ecommandsprocessor_111',['~CommandsProcessor',['../class_commands_processor.html#aaa4fbd1fd53ddcfdf8c8e1fee062919c',1,'CommandsProcessor']]],
-  ['_7ewebsocketsession_112',['~WebsocketSession',['../class_websocket_session.html#a29810dbf781adc7c497ed645bffe7cb7',1,'WebsocketSession']]]
+  ['run_122',['Run',['../class_listener.html#a506cb3165191c6861fbf2a244a587bdf',1,'Listener::Run()'],['../class_websocket_session.html#a59e1dd6f29d428f911d8fcefde56b9dd',1,'WebsocketSession::Run()']]]
 ];

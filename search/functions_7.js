@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['run_103',['Run',['../class_listener.html#a506cb3165191c6861fbf2a244a587bdf',1,'Listener::Run()'],['../class_websocket_session.html#a59e1dd6f29d428f911d8fcefde56b9dd',1,'WebsocketSession::Run()']]]
+  ['leave_117',['Leave',['../class_shared_state.html#a9da0c0ba61dfedee363aab9576fda68f',1,'SharedState']]],
+  ['listener_118',['Listener',['../class_listener.html#a46c7ea4747a8eb1d69aa6115eb11ed4f',1,'Listener']]]
 ];

@@ -70,18 +70,26 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a57a96dd021ad0eb2fffef2dce78d5634"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a57a96dd021ad0eb2fffef2dce78d5634">cmake_minimum_required</a> (VERSION 3.8) set(TARGET &quot;messenger_server&quot;) if(DEFINED ENV</td></tr>
+<tr class="memitem:a57a96dd021ad0eb2fffef2dce78d5634"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a57a96dd021ad0eb2fffef2dce78d5634">cmake_minimum_required</a> (VERSION 3.8) <a class="el" href="_c_make_lists_8txt.html#a9267ccdfbbaf6ba4f55c35f3a1f7fd90">set</a>(TARGET &quot;messenger_server&quot;) if(DEFINED ENV</td></tr>
 <tr class="separator:a57a96dd021ad0eb2fffef2dce78d5634"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa629c7daf9adc01b6fad3d88ae324229"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#aa629c7daf9adc01b6fad3d88ae324229">project</a> (${TARGET} VERSION 0.0. $ENV{GITHUB_RUN_NUMBER}) else() project($</td></tr>
+<tr class="memitem:aa629c7daf9adc01b6fad3d88ae324229"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#aa629c7daf9adc01b6fad3d88ae324229">project</a> (${TARGET} VERSION 0.0. $ENV{GITHUB_RUN_NUMBER}) <a class="el" href="_c_make_lists_8txt.html#ac8f177d7faad268c2da62e4608035b63">else</a>() project($</td></tr>
 <tr class="separator:aa629c7daf9adc01b6fad3d88ae324229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae497b97a721090979770c0b65826c1be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#ae497b97a721090979770c0b65826c1be">endif</a> () if(UNIX) find_package(Threads) endif() find_package(Boost COMPONENTS system REQUIRED) include_directories($</td></tr>
-<tr class="separator:ae497b97a721090979770c0b65826c1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182a98450f0c41c5be3f9bf8fff7ab98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a182a98450f0c41c5be3f9bf8fff7ab98">add_executable</a> (${TARGET} &quot;main.cpp&quot; &quot;listener.cpp&quot; &quot;shared_state.cpp&quot; &quot;websocket_session.cpp&quot; &quot;commands_processor.cpp&quot;) target_link_libraries($</td></tr>
-<tr class="separator:a182a98450f0c41c5be3f9bf8fff7ab98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62151f22254db2e10b5d6f098b64922f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a62151f22254db2e10b5d6f098b64922f">endif</a> () if(UNIX) find_package(Threads) endif() find_package(Boost COMPONENTS system REQUIRED) include_directories($</td></tr>
+<tr class="separator:a62151f22254db2e10b5d6f098b64922f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b316f574bfa386d634880065f99dc5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#aa8b316f574bfa386d634880065f99dc5">add_executable</a> (${TARGET} &quot;main.cpp&quot; &quot;listener.cpp&quot; &quot;shared_state.cpp&quot; &quot;websocket_session.cpp&quot; &quot;commands_processor.cpp&quot;) target_precompile_headers($</td></tr>
+<tr class="separator:aa8b316f574bfa386d634880065f99dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23349c684e8a880550b48fbf501bc488"><td class="memItemLeft" align="right" valign="top">PRIVATE precompiled hpp&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a23349c684e8a880550b48fbf501bc488">target_link_libraries</a> (${TARGET} ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT}) if(UNIX) target_link_libraries($</td></tr>
+<tr class="separator:a23349c684e8a880550b48fbf501bc488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8f177d7faad268c2da62e4608035b63"><td class="memItemLeft" align="right" valign="top">PUBLIC W4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#ac8f177d7faad268c2da62e4608035b63">else</a> () target_compile_options($</td></tr>
+<tr class="separator:ac8f177d7faad268c2da62e4608035b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aeae9db71c5be20dfb30b99e3e58765"><td class="memItemLeft" align="right" valign="top">PROPERTIES CXX_STANDARD CXX_STANDARD_REQUIRED ON&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a9aeae9db71c5be20dfb30b99e3e58765">install</a> (TARGETS ${TARGET} RUNTIME DESTINATION bin) <a class="el" href="_c_make_lists_8txt.html#a9267ccdfbbaf6ba4f55c35f3a1f7fd90">set</a>(CPACK_GENERATOR DEB) <a class="el" href="_c_make_lists_8txt.html#a9267ccdfbbaf6ba4f55c35f3a1f7fd90">set</a>(CPACK_PACKAGE_VERSION_MAJOR &quot;$</td></tr>
+<tr class="separator:a9aeae9db71c5be20dfb30b99e3e58765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9267ccdfbbaf6ba4f55c35f3a1f7fd90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_c_make_lists_8txt.html#a9267ccdfbbaf6ba4f55c35f3a1f7fd90">set</a> (CPACK_PACKAGE_VERSION_MINOR &quot;${PROJECT_VERSION_MINOR}&quot;) set(CPACK_PACKAGE_VERSION_PATCH &quot;$</td></tr>
+<tr class="separator:a9267ccdfbbaf6ba4f55c35f3a1f7fd90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a182a98450f0c41c5be3f9bf8fff7ab98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a182a98450f0c41c5be3f9bf8fff7ab98">&#9670;&nbsp;</a></span>add_executable()</h2>
+<a id="aa8b316f574bfa386d634880065f99dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b316f574bfa386d634880065f99dc5">&#9670;&nbsp;</a></span>add_executable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,16 +124,51 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae497b97a721090979770c0b65826c1be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae497b97a721090979770c0b65826c1be">&#9670;&nbsp;</a></span>endif()</h2>
+<a id="ac8f177d7faad268c2da62e4608035b63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f177d7faad268c2da62e4608035b63">&#9670;&nbsp;</a></span>else()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">endif </td>
+          <td class="memname">PUBLIC W4 else </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62151f22254db2e10b5d6f098b64922f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62151f22254db2e10b5d6f098b64922f">&#9670;&nbsp;</a></span>endif()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PUBLIC Wall Wextra pedantic Werror endif </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9aeae9db71c5be20dfb30b99e3e58765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aeae9db71c5be20dfb30b99e3e58765">&#9670;&nbsp;</a></span>install()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PROPERTIES CXX_STANDARD CXX_STANDARD_REQUIRED ON install </td>
+          <td>(</td>
+          <td class="paramtype">TARGETS ${TARGET} RUNTIME DESTINATION&#160;</td>
+          <td class="paramname"><em>bin</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -144,6 +187,42 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>${TARGET} VERSION 0.0. $ENV{GITHUB_RUN_NUMBER}</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9267ccdfbbaf6ba4f55c35f3a1f7fd90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9267ccdfbbaf6ba4f55c35f3a1f7fd90">&#9670;&nbsp;</a></span>set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">set </td>
+          <td>(</td>
+          <td class="paramtype">CPACK_PACKAGE_VERSION_MINOR &quot;${PROJECT_VERSION_MINOR}&quot;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23349c684e8a880550b48fbf501bc488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23349c684e8a880550b48fbf501bc488">&#9670;&nbsp;</a></span>target_link_libraries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PRIVATE precompiled hpp target_link_libraries </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>${TARGET} ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT}</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

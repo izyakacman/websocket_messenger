@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['_7ecommandsprocessor_61',['~CommandsProcessor',['../class_commands_processor.html#aaa4fbd1fd53ddcfdf8c8e1fee062919c',1,'CommandsProcessor']]],
-  ['_7ewebsocketsession_62',['~WebsocketSession',['../class_websocket_session.html#a29810dbf781adc7c497ed645bffe7cb7',1,'WebsocketSession']]]
+  ['websocket_5fsession_2ecpp_67',['websocket_session.cpp',['../websocket__session_8cpp.html',1,'']]],
+  ['websocket_5fsession_2ecpp_2eo_2ed_68',['websocket_session.cpp.o.d',['../websocket__session_8cpp_8o_8d.html',1,'']]],
+  ['websocket_5fsession_2ehpp_69',['websocket_session.hpp',['../websocket__session_8hpp.html',1,'']]],
+  ['websocketsession_70',['WebsocketSession',['../class_websocket_session.html',1,'WebsocketSession'],['../class_websocket_session.html#a7b821a215ba675548b6253951adf1f98',1,'WebsocketSession::WebsocketSession()']]]
 ];
