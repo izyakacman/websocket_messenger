@@ -38,6 +38,7 @@ private:
     void SendMsg(WebsocketSession* session, std::string msg);
     void SendMsgGroupNotExist(WebsocketSession* session, std::string group_name);
     void SendMsgYouAreNotRegistered(WebsocketSession* session);
+    void SendMsgYouAreNotAdmin(WebsocketSession* session);
 
     WebsocketSession* GetSessionByName(const std::string& user_name);
     boost::property_tree::ptree::iterator FindUserIntoGroup(boost::property_tree::ptree& group_node, std::string user_name);

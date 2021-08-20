@@ -61,6 +61,12 @@ void SharedState::AddUser(WebsocketSession* current_session, std::string user_na
 {
     if (GetSessionByName(user_name) == nullptr)
     {
+        if (user_name.empty())
+        {
+            SendMsg(current_session, "Wrong user name!");
+            return;
+        }
+
         sessions_[current_session] = user_name;
 
         SendMsg(current_session, "Hello " + user_name);
@@ -80,30 +86,29 @@ void SharedState::AddGroup(WebsocketSession* current_session, std::string group_
     if(user_name == noname_)
     {
         SendMsgYouAreNotRegistered(current_session);
+        return;
     }
-    else
+
+    try 
     {
-        try 
-        {
-            auto node = groups_.get_child(group_name);
+        auto node = groups_.get_child(group_name);
 
-            SendMsg(current_session, "Group " + group_name + " already exist");
-        }
-        catch(boost::property_tree::ptree_bad_path&)
-        {
-            ptree group_node;
-            group_node.push_back(std::make_pair(admin_, ptree(user_name)));
-            groups_.put_child( group_name, group_node );
-            write_json(json_file_name_, groups_);
-
-            SendMsg(current_session, "Group " + group_name + " is created");
-        }
+        SendMsg(current_session, "Group " + group_name + " already exist");
     }
+    catch(boost::property_tree::ptree_bad_path&)
+    {
+        ptree group_node;
+        group_node.push_back(std::make_pair(admin_, ptree(user_name)));
+        groups_.put_child( group_name, group_node );
+        write_json(json_file_name_, groups_);
+
+        SendMsg(current_session, "Group " + group_name + " is created");
+    }
+
 }
 
 void SharedState::AddUserToGroup(WebsocketSession* current_session, std::string group_name, std::string user_name)
 {
-    // TODO check user registration
     // TODO check duplicate
 
     auto current_user_name = sessions_.at(current_session);
@@ -111,21 +116,28 @@ void SharedState::AddUserToGroup(WebsocketSession* current_session, std::string 
     if(current_user_name == noname_)
     {
         SendMsgYouAreNotRegistered(current_session);
+        return;
     }
-    else
-    {
-        try
-        {
-            auto& group_node = groups_.get_child(group_name);
-            group_node.push_back(std::make_pair("users", ptree(user_name)));
-            write_json(json_file_name_, groups_);
 
-            SendMsg(current_session, "User " + user_name + " added into group " + group_name);
-        }
-        catch(boost::property_tree::ptree_bad_path&)
+    try
+    {
+        auto& group_node = groups_.get_child(group_name);
+        const auto& admin_name = group_node.find(admin_)->second.data();
+
+        if (current_user_name != admin_name)
         {
-            SendMsgGroupNotExist(current_session, group_name);
+            SendMsgYouAreNotAdmin(current_session);
+            return;
         }
+
+        group_node.push_back(std::make_pair("users", ptree(user_name)));
+        write_json(json_file_name_, groups_);
+
+        SendMsg(current_session, "User " + user_name + " added into group " + group_name);
+    }
+    catch(boost::property_tree::ptree_bad_path&)
+    {
+        SendMsgGroupNotExist(current_session, group_name);
     }
 }
 
@@ -222,4 +234,9 @@ void SharedState::SendMsgGroupNotExist(WebsocketSession* session, std::string gr
 void SharedState::SendMsgYouAreNotRegistered(WebsocketSession* session)
 {
     SendMsg(session, "You are not registered");
+}
+
+void SharedState::SendMsgYouAreNotAdmin(WebsocketSession* session)
+{
+    SendMsg(session, "You are not administrator of this group");
 }
