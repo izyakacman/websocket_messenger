@@ -32,17 +32,21 @@ public:
     void GetGroupUsers(WebsocketSession* current_session, std::string group_name);
 
     void DelUserFromGroup(WebsocketSession* current_session, std::string group_name, std::string user_name);
+    void DelGroup(WebsocketSession* current_session, std::string group_name);
 
 private:
 
-    void SendMsg(WebsocketSession* session, std::string msg);
-    void SendMsgGroupNotExist(WebsocketSession* session, std::string group_name);
-    void SendMsgYouAreNotRegistered(WebsocketSession* session);
-    void SendMsgYouAreNotAdmin(WebsocketSession* session);
+    void SendMsg(WebsocketSession* current_session, std::string msg);
+    void SendMsgGroupNotExist(WebsocketSession* current_session, std::string group_name);
+    void SendMsgYouAreNotRegistered(WebsocketSession* current_session);
+    void SendMsgYouAreNotAdmin(WebsocketSession* current_session);
+
+    bool IsUserRegistered(WebsocketSession* current_session);
+    bool IsUserAdmin(WebsocketSession* current_session, std::string group_name);
 
     WebsocketSession* GetSessionByName(const std::string& user_name);
     boost::property_tree::ptree::iterator FindUserIntoGroup(boost::property_tree::ptree& group_node, std::string user_name);
-
+    
     // This simple method of tracking
     // sessions only works with an implicit
     // strand (i.e. a single-threaded server)

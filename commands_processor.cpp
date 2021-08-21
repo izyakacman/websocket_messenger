@@ -78,6 +78,13 @@ void CommandsProcessor::ProcessCommand(std::string cmd, WebsocketSession* sessio
 
 		state_->DelUserFromGroup(session, group_name, user_name );
 	}
+	else if(cmd_name == "#del_group") // #del_group <group>
+	{
+		std::string group_name;
+		iss >> group_name;
+
+		state_->DelGroup(session, group_name);
+	}
 	else
 	{
 		state_->SendAll(session, cmd);
