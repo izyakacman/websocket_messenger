@@ -14,4 +14,4 @@ Commands list:
   - #get_group_users <group> - get users of the group, only group administrator can do this;
   - #del_user_from_group <group> <user> - delete user from the group, only group administrator can do this;
   - #del_group <group> - delete group, only group administrator can do this;
-  - <message> - send message to all users.
+  - \<message\> - send message to all users.
