@@ -1,7 +1,6 @@
 #include "websocket_session.hpp"
 #include "commands_processor.hpp"
-
-#include <iostream>
+#include "precompiled.hpp"
 
 WebsocketSession::WebsocketSession(tcp::socket socket, std::shared_ptr<SharedState> const& state, std::shared_ptr<CommandsProcessor> const& cmd_processor)
     : ws_{ std::move(socket) }

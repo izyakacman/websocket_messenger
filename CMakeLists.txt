@@ -30,14 +30,6 @@ target_link_libraries(${TARGET}
 
 if (UNIX)
     target_link_libraries (${TARGET} Threads::Threads)
-endif()
-
-if (MSVC)
-    target_compile_options(${TARGET} PUBLIC
-        /W4
-    )
-else ()
-
     target_compile_options(${TARGET} PUBLIC
         -Wall -Wextra -pedantic -Werror
     )
