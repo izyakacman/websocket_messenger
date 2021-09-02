@@ -2,6 +2,7 @@ set(TARGET messenger_server_tests)
 
 set(SOURCES
     messenger_server_tests.cpp
+    client.cpp
 )
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
@@ -18,6 +19,7 @@ set_target_properties(${TARGET} PROPERTIES
 target_link_libraries(${TARGET}
     ${Boost_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
+    server
 )
 
 target_precompile_headers(${TARGET} PRIVATE precompiled.hpp)

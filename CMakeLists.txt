@@ -4,6 +4,7 @@
 cmake_minimum_required (VERSION 3.8)
 
 set(TARGET "messenger_server")
+set(LIB_TARGET "server")
 
 if(DEFINED ENV{GITHUB_RUN_NUMBER})
     project (${TARGET} VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
@@ -18,8 +19,17 @@ endif()
 find_package(Boost COMPONENTS system  REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
+set(SOURCES
+    main.cpp
+    listener.cpp
+    shared_state.cpp
+    websocket_session.cpp
+    commands_processor.cpp
+)
+
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (${TARGET} "main.cpp" "listener.cpp" "shared_state.cpp" "websocket_session.cpp" "commands_processor.cpp")
+add_executable (${TARGET} ${SOURCES})
+add_library(${LIB_TARGET} STATIC ${SOURCES})
 
 target_precompile_headers(${TARGET} PRIVATE precompiled.hpp)
 
