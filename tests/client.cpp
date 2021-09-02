@@ -1,15 +1,10 @@
 #include "precompiled.hpp"
 #include "client.hpp"
 
-// Report a failure
-void fail(beast::error_code ec, char const* what)
-{
-    std::cout << what << ": " << ec.message() << "\n";
-}
-
-session::session(net::io_context& ioc) : 
+session::session(net::io_context& ioc, std::ostream& output_stream) : 
     resolver_(net::make_strand(ioc)),
-    ws_(net::make_strand(ioc))
+    ws_(net::make_strand(ioc)),
+    output_stream_{output_stream}
 {
 }
 
@@ -104,5 +99,10 @@ void session::on_close(beast::error_code ec)
     // If we get here then the connection is closed gracefully
 
     // The make_printable() function helps print a ConstBufferSequence
-    std::cout << beast::make_printable(buffer_.data()) << std::endl;
+    output_stream_ << beast::make_printable(buffer_.data()) << std::endl;
+}
+
+void session::fail(beast::error_code ec, char const* what)
+{
+    output_stream_ << what << ": " << ec.message() << "\n";
 }

@@ -7,7 +7,7 @@ class session : public std::enable_shared_from_this<session>
 public:
 
     // Resolver and socket require an io_context
-    explicit session(net::io_context& ioc);
+    session(net::io_context& ioc, std::ostream& output_stream);
 
     // Start the asynchronous operation
     void run(char const* host, char const* port, char const* text);
@@ -21,9 +21,13 @@ public:
 
 private:
 
+    // Report a failure
+    void fail(beast::error_code ec, char const* what);
+
     tcp::resolver resolver_;
     websocket::stream<beast::tcp_stream> ws_;
     beast::flat_buffer buffer_;
     std::string host_;
     std::string text_;
+    std::ostream& output_stream_;
 };
