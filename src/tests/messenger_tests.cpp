@@ -1,8 +1,9 @@
-#define BOOST_TEST_MODULE test_messenger_server
+#define BOOST_TEST_MODULE messenger_test
 
 #include "precompiled.hpp"
-#include "client.hpp"
-#include "../listener.hpp"
+#include "../client/client.hpp"
+
+#include "../server/listener.hpp"
 
 #include <boost/test/unit_test.hpp>
 
