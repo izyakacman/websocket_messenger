@@ -17,9 +17,10 @@ set_target_properties(${TARGET} PROPERTIES
 
 target_link_libraries(${TARGET}
     ${Boost_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
 )
 
-#target_precompile_headers(${TARGET} PRIVATE precompiled.hpp)
+target_precompile_headers(${TARGET} PRIVATE precompiled.hpp)
 
 add_test(NAME ${TARGET} COMMAND ${TARGET})
 #install(TARGETS ${TARGET} RUNTIME)
