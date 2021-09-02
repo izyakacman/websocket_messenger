@@ -1,5 +1,4 @@
-# messenger_server
-WebSocket messenger server
+# WebSocket messenger
 
 Listening port: 9999
 
