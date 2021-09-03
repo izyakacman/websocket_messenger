@@ -1,8 +1,12 @@
-set(TARGET messenger_server_tests)
+set(TARGET messenger_tests)
 
 set(SOURCES
     messenger_tests.cpp
 )
+
+if (UNIX)
+    find_package (Threads)
+endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 

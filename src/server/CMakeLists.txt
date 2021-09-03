@@ -1,8 +1,6 @@
 ﻿set(TARGET "messenger_server")
 set(LIB_TARGET "server")
 
-
-
 if (UNIX)
     find_package (Threads)
 endif()
