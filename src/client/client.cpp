@@ -8,11 +8,10 @@ session::session(net::io_context& ioc, std::ostream& output_stream) :
 {
 }
 
-void session::run(char const* host, char const* port, char const* text)
+void session::run(char const* host, char const* port)
 {
     // Save these for later
     host_ = host;
-    text_ = text;
 
     // Look up the domain name
     resolver_.async_resolve(host, port, beast::bind_front_handler(&session::on_resolve, shared_from_this()));
@@ -64,9 +63,11 @@ void session::on_handshake(beast::error_code ec)
 {
     if(ec)
         return fail(ec, "handshake");
+
+    output_stream_ << "connection opened\n";
     
     // Send the message
-    ws_.async_write(net::buffer(text_), beast::bind_front_handler(&session::on_write, shared_from_this()));
+    //ws_.async_write(net::buffer(text_), beast::bind_front_handler(&session::on_write, shared_from_this()));
 }
 
 void session::on_write(beast::error_code ec, std::size_t bytes_transferred)
@@ -87,8 +88,12 @@ void session::on_read(beast::error_code ec, std::size_t bytes_transferred)
     if(ec)
         return fail(ec, "read");
 
+    // The make_printable() function helps print a ConstBufferSequence
+    output_stream_ << beast::make_printable(buffer_.data()) << std::endl;
+    buffer_.clear();
+
     // Close the WebSocket connection
-    ws_.async_close(websocket::close_code::normal, beast::bind_front_handler(&session::on_close, shared_from_this()));
+    //ws_.async_close(websocket::close_code::normal, beast::bind_front_handler(&session::on_close, shared_from_this()));
 }
 
 void session::on_close(beast::error_code ec)
@@ -98,11 +103,22 @@ void session::on_close(beast::error_code ec)
 
     // If we get here then the connection is closed gracefully
 
-    // The make_printable() function helps print a ConstBufferSequence
-    output_stream_ << beast::make_printable(buffer_.data()) << std::endl;
+    output_stream_ << "connection closed\n";
 }
 
 void session::fail(beast::error_code ec, char const* what)
 {
     output_stream_ << what << ": " << ec.message() << "\n";
+}
+
+void session::Close()
+{
+    // Close the WebSocket connection
+    ws_.async_close(websocket::close_code::normal, beast::bind_front_handler(&session::on_close, shared_from_this()));
+}
+
+void session::Write(std::string msg)
+{
+    // Send the message
+    ws_.async_write(net::buffer(msg), beast::bind_front_handler(&session::on_write, shared_from_this()));
 }

@@ -1,5 +1,14 @@
 #pragma once
 
+#include <boost/beast/core.hpp>
+#include <boost/beast/websocket.hpp>
+#include <boost/asio/strand.hpp>
+
+namespace beast = boost::beast;         // from <boost/beast.hpp>
+namespace websocket = beast::websocket; // from <boost/beast/websocket.hpp>
+namespace net = boost::asio;            // from <boost/asio.hpp>
+using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
+
 // Sends a WebSocket message and prints the response
 class session : public std::enable_shared_from_this<session>
 {
@@ -10,7 +19,10 @@ public:
     session(net::io_context& ioc, std::ostream& output_stream);
 
     // Start the asynchronous operation
-    void run(char const* host, char const* port, char const* text);
+    void run(char const* host, char const* port);
+
+    void Close();
+    void Write(std::string msg);
 
     void on_resolve( beast::error_code ec, tcp::resolver::results_type results);
     void on_connect(beast::error_code ec, tcp::resolver::results_type::endpoint_type ep);
