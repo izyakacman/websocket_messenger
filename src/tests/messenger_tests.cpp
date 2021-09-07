@@ -2,12 +2,20 @@
 
 #include "precompiled.hpp"
 #include "../client/client.hpp"
-
 #include "../server/listener.hpp"
 
 #include <boost/test/unit_test.hpp>
 
 namespace utf = boost::unit_test;
+
+namespace {
+
+    constexpr auto user_name = "test_user";
+    constexpr auto host = "127.0.0.1";
+    constexpr auto port = "9999";
+    std::shared_ptr<ClientSession> client_session;
+    std::ostringstream oss;
+}
 
 struct Fixture
 {
@@ -15,10 +23,14 @@ struct Fixture
     {
         BOOST_TEST_MESSAGE( "setup fixture" );
 
-        // Create and launch a listening port
+        // Server
         std::make_shared<Listener>(ioc_, tcp::endpoint{ tcp::v4(), 9999 }, std::make_shared<SharedState>())->Run();
 
-        ioc_thread_ = std::thread( [this]{ ioc_.run(); });
+        // Client
+        client_session = std::make_shared<ClientSession>(ioc_, oss); 
+        client_session->Run(host, port);
+
+        ioc_thread_ = std::thread([this] { ioc_.run(); });
     }
 
     ~Fixture() // teardown fixture
@@ -36,14 +48,23 @@ struct Fixture
 BOOST_AUTO_TEST_SUITE(test_messenger_server, *utf::fixture<Fixture>())
 
 BOOST_AUTO_TEST_CASE(test_add_user)
-{/*
-    net::io_context ioc;
-    std::ostringstream oss;
-    std::make_shared<session>(ioc, oss)->run("localhost", "9999", "#iam test_user");
-    ioc.run();
+{
+    using namespace std::string_literals;
 
-    BOOST_CHECK(oss.str() == "Hello test_user\n");
-    */
+    while (!client_session->IsConnect()); // wait connect
+
+    oss = {}; // clear stream
+
+    client_session->Write( "#iam "s + user_name );
+
+    while (oss.str().empty()); // wait data
+
+    BOOST_CHECK(oss.str() == "Hello "s + user_name + "\n");
 }
+
+//BOOST_AUTO_TEST_CASE()
+//{
+//
+//}
 
 BOOST_AUTO_TEST_SUITE_END()

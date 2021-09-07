@@ -24,7 +24,14 @@ target_link_libraries(${TARGET}
         ${CMAKE_THREAD_LIBS_INIT}
         ) 
 
-if (UNIX)
+if (MSVC)
+    target_compile_options(${TARGET} PUBLIC
+        /bigobj
+    )
+    target_compile_options(${LIB_TARGET} PUBLIC
+        /bigobj
+    )
+else ()
     target_link_libraries (${TARGET} Threads::Threads)
     target_compile_options(${TARGET} PUBLIC
         -Wall -Wextra -pedantic -Werror

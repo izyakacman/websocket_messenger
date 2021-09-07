@@ -14,8 +14,8 @@ int main( int argc, char** argv )
 	net::io_context ioc;
 
 	// Launch the asynchronous operation
-	auto client_session = std::make_shared<session>(ioc, std::cout);
-	client_session->run(argv[1], argv[2]);
+	auto client_session = std::make_shared<ClientSession>(ioc, std::cout);
+	client_session->Run(argv[1], argv[2]);
 
 	// Run the I/O service. The call will return when
 	// the socket is closed.
