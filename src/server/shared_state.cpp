@@ -110,7 +110,6 @@ void SharedState::AddGroup(WebsocketSession* current_session, std::string group_
 
         SendMsg(current_session, "Group " + group_name + " is created");
     }
-
 }
 
 void SharedState::AddUserToGroup(WebsocketSession* current_session, std::string group_name, std::string user_name)

@@ -67,6 +67,9 @@ void ClientSession::OnHandshake(beast::error_code ec)
     output_stream_ << "connection opened\n";
 
     connected_ = true;
+
+    // Read
+    ws_.async_read(buffer_, beast::bind_front_handler(&ClientSession::OnRead, shared_from_this()));
     
     // Send the message
     //ws_.async_write(net::buffer(text_), beast::bind_front_handler(&session::on_write, shared_from_this()));
@@ -80,7 +83,7 @@ void ClientSession::OnWrite(beast::error_code ec, std::size_t bytes_transferred)
         return Fail(ec, "write");
     
     // Read a message into our buffer
-    ws_.async_read(buffer_, beast::bind_front_handler(&ClientSession::OnRead, shared_from_this()));
+    //ws_.async_read(buffer_, beast::bind_front_handler(&ClientSession::OnRead, shared_from_this()));
 }
 
 void ClientSession::OnRead(beast::error_code ec, std::size_t bytes_transferred)
@@ -94,8 +97,8 @@ void ClientSession::OnRead(beast::error_code ec, std::size_t bytes_transferred)
     output_stream_ << beast::make_printable(buffer_.data()) << std::endl;
     buffer_.clear();
 
-    // Close the WebSocket connection
-    //ws_.async_close(websocket::close_code::normal, beast::bind_front_handler(&session::on_close, shared_from_this()));
+    // Read
+    ws_.async_read(buffer_, beast::bind_front_handler(&ClientSession::OnRead, shared_from_this()));
 }
 
 void ClientSession::OnClose(beast::error_code ec)

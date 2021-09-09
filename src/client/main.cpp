@@ -1,5 +1,4 @@
 #include "precompiled.hpp"
-
 #include "client.hpp"
 
 int main( int argc, char** argv )
@@ -17,17 +16,8 @@ int main( int argc, char** argv )
 	auto client_session = std::make_shared<ClientSession>(ioc, std::cout);
 	client_session->Run(argv[1], argv[2]);
 
-	// Run the I/O service. The call will return when
-	// the socket is closed.
+	// Run the I/O service
 	std::thread thr = std::thread([&ioc] {ioc.run(); });
-
-	// Capture SIGINT and SIGTERM to perform a clean shutdown
-	net::signal_set signals(ioc, SIGINT, SIGTERM);
-	signals.async_wait(
-		[&client_session](boost::system::error_code const&, int)
-		{
-			client_session->Close();
-		});
 
 	std::string line;
 
@@ -35,6 +25,9 @@ int main( int argc, char** argv )
 	{
 		client_session->Write( line );
 	}
+
+	client_session->Close();
+	ioc.stop();
 
 	thr.join();
 }
