@@ -164,11 +164,15 @@ void SharedState::GetGroupUsers(WebsocketSession* current_session, std::string g
 
     try
     {
-        if (!IsUserAdmin(current_session, group_name)) return;
+        auto& group_node = groups_.get_child(group_name);
+
+        if (FindUserIntoGroup(group_node, sessions_[current_session]) == group_node.end())
+        {
+            SendMsg(current_session, "You are not allowed to get users of this group");
+            return;
+        }
 
         SendMsg(current_session, "Group " + group_name + " has next users");
-
-        auto& group_node = groups_.get_child(group_name);
 
         for(const auto& user : group_node)
             SendMsg(current_session, user.second.data() + ((user.first == admin_) ? " - admin" : ""));
