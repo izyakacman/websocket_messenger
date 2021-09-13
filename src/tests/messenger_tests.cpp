@@ -124,17 +124,32 @@ struct Fixture
         // del_user_from_group
 
         client_session_2->Write("#del_user_from_group g1 "s + user_name_3);
+        while (oss_2.str() != "You are not administrator of this group\n") std::this_thread::yield(); // wait data
 
-        std::this_thread::sleep_for(1s);
-        BOOST_TEST_MESSAGE(oss_2.str());
+        client_session_3->Write("#del_user_from_group g1 "s + user_name_3);
+        while (oss_3.str() != "You are not administrator of this group\n") std::this_thread::yield(); // wait data
 
+        client_session_1->Write("#del_user_from_group g1 "s + user_name_3);
+        while (oss_1.str() != "User "s + user_name_3 + " was deleted from group g1\n") std::this_thread::yield(); // wait data
 
-        while (oss_2.str() != "You are not administrator of this group") std::this_thread::yield(); // wait data
+        ClearData();
+
+        // del group
+
+        client_session_2->Write("#del_group g1");
+        while (oss_2.str() != "You are not administrator of this group\n") std::this_thread::yield(); // wait data
+
+        client_session_3->Write("#del_group g1");
+        while (oss_3.str() != "You are not administrator of this group\n") std::this_thread::yield(); // wait data
+
+        client_session_1->Write("#del_group g1");
+        while (oss_1.str() != "Group g1 deleted\n") std::this_thread::yield(); // wait data
 
         client_session_1->Close();
         client_session_2->Close();
         client_session_3->Close();
         client_session_4->Close();
+
         ioc_.stop();
         ioc_thread_.join();
 
